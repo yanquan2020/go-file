@@ -25,6 +25,10 @@ jobs:
       - name: Build
         run: |
           sudo apt-get update
-          sudo apt-get install musl-tools gcc-arm-linux-musleabi
+          sudo apt-get install musl-tools
+          sudo wget https://musl.cc/arm-linux-musleabi-cross.tgz
+          tar xzf arm-linux-musleabi-cross.tgz
+          sudo mv arm-linux-musleabi-cross /opt/
+          export PATH=/opt/arm-linux-musleabi-cross/bin:$PATH
           cd $GITHUB_WORKSPACE
           CC=arm-linux-musleabi-gcc CGO_ENABLED=1 GOOS=linux GOARCH=arm go build -ldflags "-s -w -X 'go-file/common.Version=v0.4.12' -extldflags '-static'" -o ./go-file-arm
