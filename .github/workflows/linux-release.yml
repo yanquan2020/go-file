@@ -35,3 +35,4 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.MYGITHUB_TOKEN }}
+          
