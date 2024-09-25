@@ -30,10 +30,9 @@ jobs:
           tar xzf arm-linux-musleabi-cross.tgz
           sudo mv arm-linux-musleabi-cross /opt/
           export PATH=/opt/arm-linux-musleabi-cross/bin:$PATH
-          cd $GITHUB_WORKSPACE
           CC=arm-linux-musleabi-gcc CGO_ENABLED=1 GOOS=linux GOARCH=arm go build -ldflags "-s -w -X 'go-file/common.Version=v0.4.12' -extldflags '-static'" -o ./go-file-arm   
       - name: Upload binary
-          uses: actions/upload-artifact@v2
-          with:
-            name: go-file-arm
-            path: $GITHUB_WORKSPACE/script/.
+        uses: actions/upload-artifact@v2
+        with:
+          name: go-file-arm
+          path: $GITHUB_WORKSPACE/script/.
